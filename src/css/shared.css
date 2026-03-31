@@ -1,0 +1,172 @@
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #fff;
+    color: #000;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ── */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 20px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.nav-logo {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+    text-decoration: none;
+}
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+.nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 0.5; }
+
+/* ── Layout ── */
+.page { max-width: 1280px; margin: 0 auto; }
+.content { padding-top: 40px; }
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.section + .section { margin-top: 64px; }
+
+.text-block { padding: 0 96px; }
+.image-block { padding: 0 40px; }
+
+/* ── Typography ── */
+h1 {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+h2 {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+}
+h3 {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5;
+}
+h4 {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5;
+}
+.body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #333;
+}
+.caption {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* ── Hero Title ── */
+.hero-title {
+    padding: 0 96px;
+    min-height: 192px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* ── Hero Image ── */
+.hero-image-wrapper {
+    padding: 0 40px;
+}
+.hero-image-container {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+.hero-image-container img {
+    position: absolute;
+    top: 63px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 939px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.37);
+}
+
+/* ── Images ── */
+.rounded-image {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+/* ── Footer ── */
+.footer-spacer { height: 120px; }
+
+/* ── Paragraph group ── */
+.para-group h3 + .body-text,
+.para-group h4 + .body-text { margin-top: 0; }
+
+/* ══ Mobile ══ */
+@media (max-width: 768px) {
+    .nav-links { gap: 20px; }
+    .nav-logo { font-size: 20px; }
+
+    .content { padding-top: 24px; }
+    .text-block { padding: 0 20px; }
+    .image-block { padding: 0 16px; }
+    .section + .section { margin-top: 40px; }
+    .section { gap: 16px; }
+
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    h3, h4 { font-size: 20px; }
+    .body-text { font-size: 15px; }
+
+    .hero-title {
+        padding: 0 20px;
+        min-height: auto;
+    }
+    .hero-image-wrapper { padding: 0 16px; }
+    .hero-image-container { height: 280px; }
+    .hero-image-container img {
+        width: 90%;
+        top: 30px;
+    }
+
+    .footer-spacer { height: 60px; }
+}

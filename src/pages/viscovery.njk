@@ -1,0 +1,252 @@
+---
+layout: base.njk
+title: Viscovery
+pageCss: viscovery
+permalink: /viscovery/
+---
+
+<!-- ═══ Hero Title ═══ -->
+<div class="hero-title">
+    <h1>From Tech Demo to First B2B Contract: Designing an AI Video SaaS Ecosystem</h1>
+</div>
+
+<!-- ═══ Hero Image ═══ -->
+<div class="hero-image-wrapper" style="margin-top: 40px;">
+    <div class="hero-image-container">
+        <img src="/images/viscovery/hero.jpg" alt="Viscovery CMS Platform">
+    </div>
+</div>
+
+<!-- ═══ Metabar ═══ -->
+<div class="metabar">
+    <div class="meta-left">
+        <div class="meta-block">
+            <h3>Role</h3>
+            <p class="body-text">Product Designer</p>
+        </div>
+        <div class="meta-block">
+            <h3>Challenge</h3>
+            <p class="body-text">Despite having cutting-edge AI technology, the company struggled to achieve product-market fit — a single platform couldn't serve three fundamentally different user scenarios.</p>
+        </div>
+        <div class="meta-block">
+            <h3>Impact</h3>
+            <p class="body-text">Secured the company's first B2B client (a TV broadcaster); reduced video tagging workflow from 6 to 4 clicks (33% reduction).</p>
+        </div>
+    </div>
+    <div class="meta-right">
+        <p>Joined as the sole Product Designer at an AI startup to help pivot from a technology demo into a viable B2B SaaS platform — restructured the product into a two-platform ecosystem and secured the company's first commercial contract with a major TV broadcaster.</p>
+    </div>
+</div>
+
+<!-- ═══ Context ═══ -->
+<div class="section" style="margin-top: 64px;">
+    <div class="text-block para-group">
+        <h2>Context</h2>
+        <p class="body-text">Viscovery possessed market-leading AI video recognition technology, but faced enormous challenges in commercializing it. The team's initial instinct was to build a YouTube-like single video platform. However, through in-depth interviews with B2B clients (TV broadcasters, content providers), I uncovered a critical Market Gap:</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Scale Mismatch</h3>
+        <p class="body-text">B2B clients needed to process hundreds of videos per month — YouTube's "upload one at a time" workflow couldn't support their throughput requirements.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Scenario Conflict</h3>
+        <p class="body-text">The sales team needed "firepower demos," the content operations team needed "efficient management," and advertisers needed "precise data." Forcing all three into one platform created an experience where each use case undermined the others.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>My Role</h3>
+        <p class="body-text">As the team's sole Product Designer, I collaborated directly with the PM, algorithm team, and sales, owning the full design process from user research, product scoping, and information architecture to UI design. I helped the team shift from a "tech demo mindset" to a "SaaS product mindset" and redefined the product boundaries.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/viscovery/first-approach.jpg" alt="Our first approach to the platform" class="rounded-image">
+        <p class="caption">our first approach to the platform</p>
+    </div>
+</div>
+
+<!-- ═══ Discovery → Strategy ═══ -->
+<div class="section">
+    <div class="text-block para-group">
+        <h2>Discovery → Strategy</h2>
+        <p class="body-text">Through in-depth interviews with B2B clients, I mapped out their current workflows, pain points, and unmet needs — and identified three fundamentally different user scenarios that the product needed to serve.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/viscovery/interview-table.jpg" alt="User interview findings" class="rounded-image">
+        <p class="caption">We interview with several users to understand their behaviour and highlight the crucial points.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>How I Aligned the Team</h3>
+        <p class="body-text">This decision didn't face significant internal resistance — the early consensus was that the direction was sound, and we should ship an MVP first, then iterate based on user feedback. My approach to building alignment:</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Persona Scenario Comparison</h4>
+        <p class="body-text">I laid out the three user scenarios side by side, making it clear that "sales demo" and "daily operations" fundamentally shouldn't coexist in the same interface.</p>
+    </div>
+
+    <!-- Persona Cards -->
+    <div class="image-block">
+        <div class="persona-row">
+            <div class="persona-card">
+                <div class="persona-top">
+                    <img src="/images/viscovery/persona-ed.jpg" alt="Ed Chang" class="persona-avatar">
+                    <div class="persona-info">
+                        <div class="persona-name">Ed Chang</div>
+                        <div class="persona-role">Business Development Manager<br>(Sales / First Contact)</div>
+                        <div class="persona-quote">"Every pitch I have to explain AI from scratch, and the client still leaves confused."</div>
+                    </div>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">😤 Frustrations</div>
+                    <ul>
+                        <li>The technology is too abstract to convey business value in a short meeting</li>
+                        <li>Lacks the technical background to demo the back-end system independently</li>
+                    </ul>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">❤️ Wants</div>
+                    <ul>
+                        <li>A real-time, visual demo tool that requires zero learning curve</li>
+                        <li>Let clients "see" what AI can do at a glance, instead of reading technical docs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-top">
+                    <img src="/images/viscovery/persona-peggy.jpg" alt="Peggy Lin" class="persona-avatar">
+                    <div class="persona-info">
+                        <div class="persona-name">Peggy Lin</div>
+                        <div class="persona-role">TV Station Content Operator (Content Ops / Power User)</div>
+                        <div class="persona-quote">"Hundreds of videos a month — uploading and editing one by one, half the day is wasted just waiting for AI to finish."</div>
+                    </div>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">😤 Frustrations</div>
+                    <ul>
+                        <li>YouTube-style one-at-a-time workflow can't handle B2B-scale video throughput</li>
+                        <li>The video player dominates the layout, disrupting batch management workflow</li>
+                    </ul>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">❤️ Wants</div>
+                    <ul>
+                        <li>Bulk upload and bulk edit — process the most videos with the fewest actions</li>
+                        <li>Keep working on other tasks while AI recognition runs in the background</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-top">
+                    <img src="/images/viscovery/persona-kevin.jpg" alt="Kevin Chen" class="persona-avatar">
+                    <div class="persona-info">
+                        <div class="persona-name">Kevin Chen</div>
+                        <div class="persona-role">Brand Ad Placement Manager<br>(Advertiser)</div>
+                        <div class="persona-quote">"I want to place ads when a sports car appears on screen, but I can only buy by channel."</div>
+                    </div>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">😤 Frustrations</div>
+                    <ul>
+                        <li>Traditional video ads can only target by "channel / show" — too coarse-grained</li>
+                        <li>No interface to directly link AI recognition tags with ad placements</li>
+                    </ul>
+                </div>
+                <div class="persona-section">
+                    <div class="persona-section-title">❤️ Wants</div>
+                    <ul>
+                        <li>Precision targeting at the "scene / object" level</li>
+                        <li>A seamless flow from AI tags to ad placement — no switching between</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-block para-group">
+        <h4>Prototype-Driven Demonstration</h4>
+        <p class="body-text">I created prototypes showing the experience gap between the original approach (cramming all features into one platform) and the new approach, letting stakeholders feel the problem firsthand rather than relying on verbal arguments alone.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Dividing Functions into platforms</h3>
+        <p class="body-text">Three scenarios didn't mean three separate products. After evaluating the practical product boundaries, I converged them into two platforms:</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Demo Site:</h4>
+        <p class="body-text">Sales only needed to pull recognition results for external demos, with no need to access video management or ad placement. Keeping it independent ensured a lightweight, focused showcase experience free from back-end complexity.</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Operations Platform VidSense + Tag2Ad (Integrating Persona B + C):</h4>
+        <p class="body-text">Video recognition management and ad placement appeared to serve different roles, but in practice they overlapped significantly — the same content provider (e.g., a TV broadcaster) typically had both needs. I consolidated these into a single platform with header-based view switching, eliminating the need for users to jump between two separate systems.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/viscovery/architecture.png" alt="Platform architecture diagram" style="width:100%;">
+    </div>
+</div>
+
+<!-- ═══ Core Design Challenges ═══ -->
+<div class="section">
+    <div class="text-block">
+        <h2>Core Design Challenges</h2>
+    </div>
+    <div class="text-block para-group">
+        <h3>Information Architecture Restructure — From YouTube Clone to Ops-First Platform</h3>
+        <div class="body-text">
+            <p>In the first version, we adopted YouTube's content architecture — centered on the single-video player page. But persona analysis revealed that the content operations team's core need wasn't "watching" — it was "batch management" and "efficient operations."</p>
+            <br>
+            <p>I deconstructed the first version's information architecture and restructured it as follows:</p>
+        </div>
+    </div>
+    <div class="image-block">
+        <div class="placeholder"></div>
+    </div>
+    <div class="text-block para-group">
+        <div class="body-text">
+            <p>Navigation Shift: Moved the focal point from "video playback" to a "folder and batch management" view, enabling operators to quickly locate, filter, and bulk-process hundreds of videos.</p>
+            <br>
+            <p>Batch Operations First: Converted previously one-at-a-time actions — tag editing, recognition result review — into multi-select batch operations, meeting B2B clients' high-throughput requirements.</p>
+            <br>
+            <p>Status Visibility: Surfaced each video's recognition status (uploading / processing / complete / failed) directly at the list level, allowing operators to grasp the overall state at a glance without clicking into individual items.</p>
+        </div>
+    </div>
+    <div class="text-block para-group">
+        <h3>Asynchronous UX — Turning System Latency into User Productivity</h3>
+        <p class="body-text">The biggest experience killer in AI video recognition was latency. To prevent users from being blocked during bulk uploads, I introduced an Asynchronous Interaction design:</p>
+    </div>
+    <div class="image-block">
+        <div class="placeholder" id="async-ux-placeholder"></div>
+    </div>
+    <div class="text-block para-group">
+        <h4>Task Manager Pattern</h4>
+        <p class="body-text">I designed a global progress manager. While videos were uploading or undergoing AI processing in the background, users could minimize the window to the bottom-right corner and continue editing tags or organizing folders. This successfully transformed "system processing time" into "productive user work time."</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Resilient Error Handling</h4>
+        <p class="body-text">For network interruptions or recognition failures, I designed clear "resume upload" and "re-run recognition" entry points, ensuring the automated pipeline wouldn't be completely stalled by a single error.</p>
+    </div>
+</div>
+
+<!-- ═══ Impact & Learnings ═══ -->
+<div class="section">
+    <div class="text-block">
+        <h2>Impact &amp; Learnings</h2>
+    </div>
+    <div class="text-block para-group">
+        <h3>Commercial Win</h3>
+        <p class="body-text">Successfully leveraged this MVP platform architecture to help the company secure its first landmark B2B client (a TV broadcaster), formally validating the commercial viability of the AI tagging technology.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Operational Efficiency:</h3>
+        <p class="body-text">By redesigning the video tagging workflow, I reduced the steps required to complete a single video's tags from 6 clicks to 4 (a 33% reduction). At the TV broadcaster's operational scale of hundreds of videos per month, this optimization saved operators significant amounts of repetitive work.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Design Ops Improvement:</h3>
+        <p class="body-text">Facing poor cross-departmental communication efficiency (PM, algorithm team, sales) and version control issues inherent to the Sketch era, I led the team's tooling transformation — migrating from a fragmented file-sharing workflow to Figma-based online collaboration, achieving a "Design as Spec" approach. I drew complete logic jumps and data states directly within design files, enabling algorithm engineers to intuitively understand scenarios like "what to display when recognition confidence drops below 80%," dramatically reducing development misinterpretation and back-and-forth confirmation costs.</p>
+    </div>
+</div>
+
+<!-- ═══ Reflection ═══ -->
+<div class="section">
+    <div class="text-block para-group">
+        <h2>Reflection: What I'd Do Differently</h2>
+        <p class="body-text">Engage real users earlier. In the early stages of this project, we designed from a completely blank slate — relying on internal team discussions and assumptions to build the first version. It was only after connecting with a TV broadcaster's actual use case through the sales team that we discovered a fundamental gap between our original direction and real client needs, ultimately leading to a complete interface overhaul. If I could do it over, I would proactively leverage the sales team's client channels from the very beginning to directly understand B2B users' real workflows and pain points, rather than waiting until the product was already built to course-correct. This was the most critical lesson from this project: for B2B products, the earlier the designer gains access to end users' real scenarios, the lower the cost of rework down the line.</p>
+    </div>
+</div>

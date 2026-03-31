@@ -1,0 +1,228 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+canvas {
+    display: block;
+}
+.frame {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 24px solid #ffffff;
+    pointer-events: none;
+    z-index: 10;
+}
+.hero-text {
+    position: fixed;
+    top: 156px;
+    left: 156px;
+    z-index: 10;
+    pointer-events: none;
+    font-family: 'Libre Caslon Text', serif;
+}
+.hero-text h1 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 7vw;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: -5px;
+}
+.hero-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3vw;
+    font-weight: 400;
+    color: #555;
+    margin: 0.5vw 0 0;
+    letter-spacing: 0;
+    padding-left: 1.4vw;
+    line-height: 100%;
+}
+.work-list {
+    position: fixed;
+    bottom: 156px;
+    left: 156px;
+    z-index: 10;
+    font-family: 'Old Standard TT', serif;
+}
+.link-list {
+    position: fixed;
+    bottom: 156px;
+    right: 156px;
+    z-index: 10;
+    font-family: 'Old Standard TT', serif;
+    text-align: right;
+    font-weight: 800;
+}
+.work-list ul,
+.link-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+.link-list ul {
+    gap: 1.2vw;
+}
+.work-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
+    padding: 0.5vw 1vw;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.work-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    transform: translateX(-101%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+.work-item:hover::before {
+    transform: translateX(0);
+}
+.work-item .title {
+    font-family: 'Old Standard TT', serif;
+    font-size: 2vw;
+    color: #555;
+    letter-spacing: 1px;
+    transition: color 0.25s;
+    font-weight: 700;
+}
+.work-item .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8vw;
+    color: #585858;
+    letter-spacing: 0.5px;
+    transition: color 0.25s;
+}
+.work-item .arrow {
+    font-size: 2vw;
+    color: #fff;
+    opacity: 0;
+    margin-left: auto;
+    transition: opacity 0.25s, transform 0.25s;
+    transform: translateX(-8px);
+}
+.work-item:hover .title,
+.work-item:hover .subtitle {
+    color: #ffffff;
+}
+.work-item:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Term Popups ── */
+.term-popup {
+    position: fixed;
+    z-index: 9;
+    pointer-events: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.6;
+    padding: 6px 12px;
+    background: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.term-popup .term-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    transform: translateX(-101%);
+    animation: termSwipe 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.term-popup .term-text {
+    position: relative;
+    opacity: 0;
+    animation: termFadeIn 0.2s 0.25s forwards;
+}
+.term-popup.leaving .term-bg {
+    transform: translateX(0);
+    animation: termSwipeOut 0.3s 0.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.term-popup.leaving .term-text {
+    opacity: 1;
+    animation: termFadeOut 0.1s forwards;
+}
+@keyframes termSwipe {
+    to { transform: translateX(0); }
+}
+@keyframes termSwipeOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(101%); }
+}
+@keyframes termFadeIn {
+    to { opacity: 1; }
+}
+@keyframes termFadeOut {
+    to { opacity: 0; }
+}
+
+/* ══ Mobile ══ */
+@media (max-width: 768px) {
+    .frame { border-width: 12px; }
+
+    .hero-text {
+        top: 40px;
+        left: 24px;
+        right: 24px;
+    }
+    .hero-text h1 {
+        font-size: 11vw;
+        letter-spacing: -2px;
+    }
+    .hero-text p {
+        font-size: 14px;
+        margin: 6px 0 0;
+        padding-left: 4px;
+    }
+
+    .work-list {
+        bottom: auto;
+        top: 50%;
+        left: 24px;
+        right: 24px;
+    }
+    .link-list {
+        bottom: 32px;
+        right: 24px;
+        left: auto;
+    }
+
+    .work-list ul { gap: 4px; }
+    .link-list ul { gap: 8px; }
+
+    .work-item {
+        gap: 8px;
+        padding: 6px 10px;
+    }
+    .work-item .title {
+        font-size: 18px;
+    }
+    .work-item .subtitle {
+        font-size: 11px;
+    }
+    .work-item .arrow {
+        font-size: 16px;
+    }
+
+    .term-popup { font-size: 10px; }
+}
