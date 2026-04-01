@@ -1,0 +1,152 @@
+---
+layout: base.njk
+title: Hangie
+pageCss: hangie
+permalink: /hangie/
+---
+
+<!-- ═══ Hero Title ═══ -->
+<div class="hero-title">
+    <h1>When the System Broke: Debugging a Web3 Matching Engine as a Product Owner</h1>
+</div>
+
+<!-- ═══ Hero Image ═══ -->
+<div class="hero-image-wrapper" style="margin-top: 40px;">
+    <div class="hero-image-container">
+        <img src="/images/hangie/hero.jpg" alt="Hangie App — Energy Rental Platform">
+    </div>
+</div>
+
+<!-- ═══ Metabar ═══ -->
+<div class="metabar">
+    <div class="meta-left">
+        <div class="meta-block">
+            <h3>Role</h3>
+            <p class="body-text">Product Owner & Design Lead</p>
+        </div>
+        <div class="meta-block">
+            <h3>Challenge</h3>
+            <p class="body-text">Built a high-complexity blockchain financial product from scratch, only to discover a hidden flaw in the core matching logic after Soft Launch — users couldn't earn returns despite active market demand.</p>
+        </div>
+        <div class="meta-block">
+            <h3>Impact</h3>
+            <p class="body-text">Aligned the team through a real-time logic flowchart, fixed the matching engine; energy API now processes 50-80 daily B2B transactions with near-100% order success rate.</p>
+        </div>
+    </div>
+    <div class="meta-right">
+        <p>As Product Owner and Design Lead, I built a TRON-based energy rental and financial aggregation platform from zero. After Soft Launch, I uncovered a critical logic flaw in the matching engine, resolved it by self-studying blockchain mechanics, drawing decision-tree flowcharts in real-time with the engineering team, and successfully restructured the system logic for stable operation.</p>
+    </div>
+</div>
+
+<!-- ═══ Context ═══ -->
+<div class="section" style="margin-top: 64px;">
+    <div class="text-block para-group">
+        <h2>Context</h2>
+        <p class="body-text">Hangie is an energy rental platform on the TRON blockchain — using intelligent matching to help users reduce transfer fees by 80% while generating stable on-chain returns for capital holders. The core product challenge: transforming abstract blockchain concepts like "Energy" and "Staking" into a financial product experience that general users can understand.</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">This domain was entirely new to me. To build sufficient domain knowledge for sound product decisions, I approached it from two directions simultaneously:</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Self-Directed Research</h3>
+        <p class="body-text">Read TRON whitepapers and technical documentation, executed on-chain transactions hands-on (staking, energy conversion) to build first-hand understanding of the underlying mechanics.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Intensive Collaboration with Tech Lead</h3>
+        <p class="body-text">Through weekly technical deep-dive sessions, progressively clarified the matching engine's priority logic, interest accrual rules, and technical constraints of on-chain interactions.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>My Role</h3>
+        <p class="body-text">As Product Owner and Design Lead, I was responsible for business logic definition, product spec writing, UX design, and development process management. Team composition: 1 PM (myself), 1 Tech Lead, 2 Backend & 1 Frontend Developers, 1 Designer. Beyond product design, I also introduced Sprint methodology, transforming the team from an "ad-hoc verbal assignment" mode to iteration-driven development powered by User Stories.</p>
+    </div>
+</div>
+
+<!-- ═══ Modular Architecture ═══ -->
+<div class="section">
+    <div class="text-block para-group">
+        <h2>Modular Architecture</h2>
+        <p class="body-text">To ensure system maintainability and future extensibility, I collaborated with the Tech Lead to decompose the system into a separated dual-layer architecture:</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Finance Layer</h4>
+        <p class="body-text">Handles universal interest calculation rules, product listing/delisting, and purchase flows. Keeps logic independent so adding new financial products in the future requires no changes to the underlying layer.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/architecture.png" alt="Dual-layer architecture: Finance Layer and Staking Layer" class="rounded-image">
+    </div>
+    <div class="text-block para-group">
+        <h4>Staking Layer</h4>
+        <p class="body-text">Handles on-chain interactions, energy conversion, and matching execution. Focuses on synchronization stability with blockchain nodes.</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">This architectural decision proved its value during the subsequent debugging process — when the matching logic broke, we could precisely locate the issue in the Staking Layer rather than the Finance Layer, significantly narrowing the investigation scope.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/hangie-app.jpg" alt="Hangie app screens — Rent Energy and Staking" style="width:100%;">
+    </div>
+</div>
+
+<!-- ═══ From System Failure to Logic Restructuring ═══ -->
+<div class="section">
+    <div class="text-block para-group">
+        <h2>From System Failure to Logic Restructuring</h2>
+        <p class="body-text">After Soft Launch, we encountered an unexpected failure scenario: users purchased financial products (deposit orders), but even with active energy demand in the market, the system failed to execute matches — leaving users unable to earn returns.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Step 1 — Root Cause Analysis:</h3>
+        <p class="body-text">Through deep investigation with the engineering team, I uncovered two hidden logic conflicts:</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Priority Conflict</h4>
+        <p class="body-text">The system defaulted to consuming "company-owned funds" and "third-party external energy" first, with "user deposit orders" last in line. This meant that when supply was sufficient from other sources, retail users' deposits might never get matched.</p>
+    </div>
+    <div class="text-block para-group">
+        <h4>Threshold Issue</h4>
+        <p class="body-text">When a single order's energy requirement (e.g., 6,000) exceeded a user's individual deposit capacity (e.g., 100), the system would skip that user entirely — making it impossible for small-amount retail users to ever match successfully.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Step 2 — Visual Alignment with FigJam:</h3>
+        <p class="body-text">Facing a cognitive gap within the development team regarding "internal vs. external order priority," verbal communication kept going back and forth without convergence. I changed tactics — during an online meeting, I opened FigJam and drew the matching engine's logic decision tree in real-time, marking each node: "Is energy sufficient?", "Priority ranking," "Threshold check," and so on.</p>
+    </div>
+    <div class="text-block">
+        <div class="body-text">
+            <p>This real-time flowchart achieved two things:</p>
+            <p>1. Gave engineers and myself a shared visual reference for "how the system currently behaves" vs. "how the system should behave."</p>
+            <p>2. Became the Gold Standard for subsequent development, eliminating a significant amount of back-and-forth communication overhead.</p>
+        </div>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/figjam-flowchart.jpg" alt="FigJam logic decision tree for matching engine" style="width:100%;">
+    </div>
+    <div class="text-block para-group">
+        <h3>Step 3 — Operational Fix: Liquidity Buffer:</h3>
+        <p class="body-text">During the transition period while the code logic was being fixed, to prevent users from remaining unmatched, I proposed a "Liquidity Buffer" mechanism: the company would cover the shortfall for individual orders, ensuring small-amount users could successfully match and generate returns from the start. This mechanism simultaneously solved the cold-start problem — maintaining normal system operation before user volume reached critical mass.</p>
+    </div>
+</div>
+
+<!-- ═══ Impact & Learnings ═══ -->
+<div class="section">
+    <div class="text-block">
+        <h2>Impact &amp; Learnings</h2>
+    </div>
+    <div class="text-block para-group">
+        <h3>System Stability:</h3>
+        <p class="body-text">The repaired matching engine operates reliably, with the energy API processing 50-80 daily B2B transactions at near-100% order success rate, with zero invalid orders.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Cross-Domain Communication:</h3>
+        <p class="body-text">The logic flowchart drawn live in FigJam became the team's shared language, demonstrating that visual communication is more effective than verbal or written discussion in high-complexity technical contexts.</p>
+    </div>
+    <div class="text-block para-group">
+        <h3>Process Transformation:</h3>
+        <p class="body-text">Successfully transitioned the team from "ad-hoc assignments + firefighting" mode to Sprint-driven iterative development, with requirements entering the backlog as User Stories and a stabilized development cadence.</p>
+    </div>
+</div>
+
+<!-- ═══ Reflection ═══ -->
+<div class="section">
+    <div class="text-block para-group">
+        <h2>Reflection: What I'd Do Differently</h2>
+        <p class="body-text">Build edge-case decision trees before launch. The matching failure was fundamentally an edge case — small retail users unable to match under specific conditions. If I had drawn a complete decision tree for the matching logic during the design phase (rather than only designing the Happy Path), we could have caught this issue before Soft Launch. This experience deeply reinforced that as a Product Owner, design isn't just about the ideal state — it requires understanding backend constraints and proactively planning solutions for edge cases when system resources are insufficient.</p>
+    </div>
+</div>
