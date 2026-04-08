@@ -1,0 +1,43 @@
+{% if prevTitle or nextTitle %}
+<div class="project-nav">
+    {% if prevTitle %}
+    <a class="project-nav-item project-nav-item--prev" href="{{ prevHref }}">
+        <div class="project-nav-arrow">
+            <svg width="40" height="100" viewBox="0 0 40 100" fill="none">
+                <path d="M32 6 L8 50 L32 94" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="project-nav-info">
+            <div class="project-nav-label">Previous Project</div>
+            <div class="project-nav-thumb">
+                <img src="{{ prevImg }}" alt="{{ prevTitle }}">
+            </div>
+            <div class="project-nav-title">{{ prevTitle }}</div>
+        </div>
+    </a>
+    {% else %}
+    <div class="project-nav-placeholder"></div>
+    {% endif %}
+
+    <div class="project-nav-divider"></div>
+
+    {% if nextTitle %}
+    <a class="project-nav-item project-nav-item--next" href="{{ nextHref }}">
+        <div class="project-nav-info project-nav-info--right">
+            <div class="project-nav-label">Next Project</div>
+            <div class="project-nav-thumb">
+                <img src="{{ nextImg }}" alt="{{ nextTitle }}">
+            </div>
+            <div class="project-nav-title">{{ nextTitle }}</div>
+        </div>
+        <div class="project-nav-arrow">
+            <svg width="40" height="100" viewBox="0 0 40 100" fill="none">
+                <path d="M8 6 L32 50 L8 94" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
+    {% else %}
+    <div class="project-nav-placeholder"></div>
+    {% endif %}
+</div>
+{% endif %}

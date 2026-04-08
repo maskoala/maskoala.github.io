@@ -96,7 +96,7 @@ canvas {
 .work-item .title {
     font-family: 'Old Standard TT', serif;
     font-size: 2vw;
-    color: #555;
+    color: #000;
     letter-spacing: 1px;
     transition: color 0.25s;
     font-weight: 700;

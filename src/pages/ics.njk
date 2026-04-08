@@ -1,0 +1,265 @@
+---
+layout: base.njk
+title: ICS Design System
+pageCss: ics
+permalink: /ics/
+prevTitle: "Hangie"
+prevHref: "/hangie/"
+prevImg: "/images/hangie/hero.jpg"
+nextTitle: "ACCUPASS"
+nextHref: "/accupass/"
+nextImg: "/images/accupass/hero.jpg"
+---
+
+<!-- ═══ Hero Title ═══ -->
+<div class="hero-title">
+    <h1>Building a Scalable Multi-Brand Design System</h1>
+</div>
+
+<!-- ═══ Hero Image ═══ -->
+<div class="hero-image-wrapper" style="margin-top: 40px;">
+    <div class="ics-hero">
+        <img src="/images/ics/hero.png" alt="ICS Design System" class="ics-hero-img">
+    </div>
+</div>
+
+<!-- ═══ Metabar ═══ -->
+<div class="metabar">
+    <div class="meta-left">
+        <div class="meta-block">
+            <h3>Role</h3>
+            <p class="body-text">Senior Product Designer</p>
+        </div>
+        <div class="meta-block">
+            <h3>Challenge</h3>
+            <p class="body-text">The product portfolio spanned B2C and B2B with vastly different visual identities, yet lacked any systematic design standards — every new project meant reinventing the wheel.</p>
+        </div>
+        <div class="meta-block">
+            <h3>Impact</h3>
+            <ul class="impact-list">
+                <li>Established a twin-layer Design System covering multiple product lines across three platforms (PC / Mobile Web / Native App)</li>
+                <li>Eliminated 1-2 weeks of baseline styling setup for new projects</li>
+                <li>Implemented a Design Token Pipeline as a single source of truth between design and development</li>
+            </ul>
+        </div>
+    </div>
+    <div class="meta-right">
+        <p>As the senior designer on the team, I self-initiated and led the company's first Design System — building a twin-layer architecture (Foundation Layer + Creative Layer) from scratch, bridging design and development through Design Tokens, and solving consistency and efficiency problems across a multi-brand, multi-platform product portfolio.</p>
+    </div>
+</div>
+
+<!-- ═══ Page Nav ═══ -->
+<nav class="page-nav" id="page-nav">
+    <div class="page-nav-header">ON THIS PAGE</div>
+    <ul class="page-nav-list">
+        <li><a href="#" class="page-nav-item" data-target="overview">Overview</a></li>
+        <li><a href="#" class="page-nav-item" data-target="context">Context</a></li>
+        <li><a href="#" class="page-nav-item" data-target="twin-layer">The "Twin-Layer" Architecture</a></li>
+        <li><a href="#" class="page-nav-item" data-target="core-challenges">Core Design Challenges</a></li>
+        <li><a href="#" class="page-nav-item" data-target="impact">Impact &amp; Learnings</a></li>
+        <li><a href="#" class="page-nav-item" data-target="reflection">Reflection</a></li>
+    </ul>
+</nav>
+
+<!-- ═══ Context ═══ -->
+<div class="section" id="context" style="margin-top: 64px;">
+    <div class="text-block">
+        <h2>Context</h2>
+        <p class="body-text">ICS had a sprawling product portfolio including a B2C gaming portal, a B2B agent dashboard, and a sports event back-office — all requiring support across PC, Mobile Web (H5), and Native App. Without systematic standards, the team faced severe Operational Debt:</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Fragmented Development</h4>
+        <p class="body-text">Every time a new product line launched, the team redefined typography (H1-H6), spacing, and color palettes from scratch, burning significant time on repetitive foundational work.</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Cross-Platform Inconsistency</h4>
+        <p class="body-text">The same brand had mismatched border radii and gray scales between App and Web, undermining product professionalism.</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">High Communication Overhead</h4>
+        <p class="body-text">Front-end engineers eyeballed spacing (producing arbitrary values like 9px, 13px), leading to excessive pixel-pushing during QA.</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">My Role</h4>
+        <p class="body-text">As the senior designer on the team, I proactively identified these structural problems and proposed building the company's first Design System. I led the entire effort end-to-end — from defining standards, designing the architecture, and building the Token Pipeline to driving cross-departmental adoption.</p>
+    </div>
+</div>
+
+<!-- ═══ Twin-Layer Architecture ═══ -->
+<div class="section" id="twin-layer">
+    <div class="text-block">
+        <h2>The "Twin-Layer" Architecture</h2>
+        <p class="body-text">The core tension was: a Design System demands consistency, but a B2C gaming portal (high-saturation, playful) and a B2B agent dashboard (dark, premium) are worlds apart visually. A rigid one-size-fits-all system would make every product look the same; no system at all would leave the wheel-reinventing problem unsolved.</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Foundation Layer — Write Once, Use Everywhere</h4>
+        <p class="body-text">This layer served as the "laws of physics" shared by all products, ensuring cross-platform consistency:</p>
+    </div>
+
+    <!-- Foundation Cards Grid -->
+    <div class="image-block">
+        <div class="foundation-cards-grid">
+            <!-- Row 1: Base-4 Scale, Typography, Grayscale -->
+            <div class="foundation-cards-row">
+                <div class="foundation-card-wrapper">
+                    <img src="/images/ics/foundation_layer_base.png" alt="Base-4 Size Scale" class="foundation-card-img">
+                    <p class="foundation-card-info">Defined a set of primitive size tokens built on a base-4 progression, serving as the single source of sizing truth for typography, spacing, and component dimensions.</p>
+                </div>
+                <div class="foundation-card-wrapper">
+                    <img src="/images/ics/foundation_layer_typography.png" alt="Typography" class="foundation-card-img">
+                    <p class="foundation-card-info">Unified H1-H6 hierarchy, providing a universal structural skeleton regardless of product line.</p>
+                </div>
+                <div class="foundation-card-wrapper">
+                    <img src="/images/ics/foundation_layer_grayscale.png" alt="Grayscale" class="foundation-card-img">
+                    <p class="foundation-card-info">Gray tones appear frequently across all UI text, borders, and backgrounds with consistent steps, so I defined a standardized grayscale as a shared foundational palette.</p>
+                </div>
+            </div>
+
+            <!-- Row 2: Spacing, Branding Color -->
+            <div class="foundation-cards-row">
+                <div class="foundation-card-wrapper">
+                    <img src="/images/ics/foundation_layer_spacing.png" alt="Spacing" class="foundation-card-img">
+                    <p class="foundation-card-info">Strictly enforced 8px grid (with 4px fine-tuning allowed), eliminating arbitrary values like 13px or 7px so engineers could calculate layouts through math.</p>
+                </div>
+                <div class="foundation-card-wrapper">
+                    <img src="/images/ics/foundation_layer_branding_color.png" alt="Branding Color" class="foundation-card-img">
+                    <p class="foundation-card-info">To ensure brand identity permeated every product line, we kept the core Branding Color series in the Foundation Layer — guaranteeing primary brand colors remained consistent regardless of which Theme was applied on top.</p>
+                </div>
+                <!-- Empty cell keeps 3-column alignment -->
+                <div class="foundation-card-wrapper"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Creative Layer — Theming Strategy</h4>
+        <p class="body-text">On top of the shared foundation, I customized themes for different target audiences. This layering meant that when launching a new product, the team only needed to decide "which Theme to apply" — not redefine every foundational style from scratch.</p>
+    </div>
+
+    <!-- Game Portal (B2C) -->
+    <div class="image-block">
+        <div class="theme-showcase">
+            <div class="theme-info-panel">
+                <div class="theme-info-card theme-info-card--main">
+                    <div class="theme-card-title">Game Portal (B2C)</div>
+                    <p class="theme-card-desc">Targeting general gamers with high-saturation primary colors and playful border-radius styles.</p>
+                </div>
+                <div class="theme-info-card">
+                    <div class="theme-card-label">Font-family</div>
+                    <div class="theme-font-sample-name">Kiwi-Maru</div>
+                    <div class="theme-font-sample-text">快棕狐跳過懶狗</div>
+                </div>
+                <div class="theme-info-card">
+                    <div class="theme-card-label">Color</div>
+                    <div class="theme-colors-row">
+                        <div class="theme-color-chip" style="background:linear-gradient(135deg,#ff2c78,#ff3d49);"></div>
+                        <div class="theme-color-chip" style="background:#ff2c78;"></div>
+                        <div class="theme-color-chip" style="background:#ff3d49;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="theme-display theme-display--b2c">
+                <img src="/images/ics/creative_layer_game_portal.png" alt="Game Portal" style="width:100%;height:100%;object-fit:cover;top:0;left:0;border-radius:0;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent App -->
+    <div class="image-block">
+        <div class="theme-showcase">
+            <div class="theme-info-panel">
+                <div class="theme-info-card theme-info-card--main">
+                    <div class="theme-card-title">Agent App</div>
+                    <p class="theme-card-desc">Targeting agents with gold and dark color schemes symbolizing "wealth" and "prestige," emphasizing trust and asset value.</p>
+                </div>
+                <div class="theme-info-card">
+                    <div class="theme-card-label">Font-family</div>
+                    <img src="/images/ics/agent_app_font_family.png" alt="Font-family Yeseva One" class="theme-info-img">
+                </div>
+                <div class="theme-info-card">
+                    <div class="theme-card-label">Custom Icon</div>
+                    <div class="theme-icons-row">
+                        <img src="/images/ics/agent_app_icon_home.png" alt="home icon">
+                        <img src="/images/ics/agent_app_icon_share.png" alt="share icon">
+                        <img src="/images/ics/agent_app_icon_record.png" alt="record icon">
+                        <img src="/images/ics/agent_app_icon_more.png" alt="more icon">
+                        <img src="/images/ics/agent_app_icon_member.png" alt="member icon">
+                    </div>
+                </div>
+            </div>
+            <div class="theme-display theme-display--agent">
+                <img src="/images/ics/creative_layer_agent_app.png" alt="Agent App" style="width:100%;height:100%;object-fit:cover;top:0;left:0;border-radius:0;">
+            </div>
+        </div>
+    </div>
+
+    <!-- War Room Dashboard -->
+    <div class="image-block">
+        <div class="theme-showcase">
+            <div class="theme-info-panel">
+                <div class="theme-info-card theme-info-card--main">
+                    <div class="theme-card-title">World Cup War Room Dashboard</div>
+                    <p class="theme-card-desc">Built a real-time command-center dashboard for the internal operations team during the World Cup, using a dark red palette with high-contrast data displays — enabling operators to monitor live user counts, betting volume, and match rankings at a glance during high-pressure live events.</p>
+                </div>
+                <div class="theme-info-card">
+                    <div class="theme-card-label">Font-family</div>
+                    <img src="/images/ics/war_room_font_family.png" alt="Font-family Rajdhani" class="theme-info-img">
+                </div>
+            </div>
+            <div class="theme-display theme-display--warroom">
+                <img src="/images/ics/creative_layer_war_room.png" alt="War Room Dashboard" style="width:100%;height:100%;object-fit:cover;top:0;left:0;border-radius:0;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Core Design Challenges ═══ -->
+<div class="section" id="core-challenges">
+    <div class="text-block">
+        <h2>Core Design Challenges</h2>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Bridging Design and Code — The Token Pipeline</h4>
+        <p class="body-text">The twin-layer architecture solved the design-side standards problem, but if the handoff method remained "screenshots + annotations," the execution gap on the engineering side would persist. My most critical contribution in this project was building an automated pipeline from design to code:</p>
+    </div>
+    <div class="image-block">
+        <div class="token-pipeline">
+            <img src="/images/ics/design_token.png" alt="Design token pipeline" style="width:100%;height:100%;object-fit:cover;top:0;left:0;border-radius:0;">
+        </div>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Design Tokens Pipeline</h4>
+        <p class="body-text">I established a variable system within Figma and used plugins to directly export JSON-formatted Style Dictionary files to the front-end team. Every token had a clear naming hierarchy (e.g., color.primary.500, spacing.lg), ensuring design intent could be directly consumed by code.</p>
+    </div>
+    <div class="text-block">
+        <h4 class="phase-label">Single Source of Truth</h4>
+        <p class="body-text">When a color value was adjusted on the design side, front-end only needed to update the JSON file for site-wide synchronization — no manual CSS edits required. This eliminated the classic pain point of "design changed but engineering didn't follow," achieving truly engineered collaboration.</p>
+    </div>
+</div>
+
+<!-- ═══ Impact & Learnings ═══ -->
+<div class="section" id="impact">
+    <div class="text-block">
+        <h2>Impact &amp; Learnings</h2>
+    </div>
+    <div class="text-block">
+        <h3>Zero-Setup for New Projects</h3>
+        <p class="body-text">When launching new projects, front-end and designers directly adopted the Foundation Library, skipping 1-2 weeks of baseline styling setup and jumping straight into business logic design.</p>
+    </div>
+    <div class="text-block">
+        <h3>Focus on Creativity</h3>
+        <p class="body-text">Designers were freed from the tedium of repeatedly defining button styles, redirecting their energy to differentiated visual expression and user experience across B2B/B2C.</p>
+    </div>
+    <div class="text-block">
+        <h3>Design-to-Code Accuracy</h3>
+        <p class="body-text">Through the Token Pipeline and 8pt Grid constraints, the accuracy between development output and design specs improved dramatically, significantly reducing pixel-correction issues during QA.</p>
+    </div>
+</div>
+
+<!-- ═══ Reflection ═══ -->
+<div class="section" id="reflection">
+    <div class="text-block">
+        <h2>Reflection: What I'd Do Differently</h2>
+        <p class="body-text">Involve engineers earlier. This Design System was primarily built by me on the design side in the early stages — I defined the complete standards first, then handed them off to the front-end team. While the Token Pipeline ultimately achieved smooth integration, if I could do it over, I would bring front-end engineers into the architecture design phase to co-define token naming conventions and data structures. The benefit: engineers could surface technical constraints and implementation insights early, preventing the design side from defining standards that are "theoretically perfect but awkward to implement" — while also building engineering ownership of the system to accelerate adoption and maintenance.</p>
+    </div>
+</div>
