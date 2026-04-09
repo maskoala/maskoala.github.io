@@ -201,14 +201,17 @@ function init(imgUrl) {
     img.onload = function() {
         let tempWidth = img.width;
         let tempHeight = img.height;
-        const maxDim = 1200;
+        const isMobile = window.innerWidth <= 768;
+        const maxDim = isMobile ? 300 : 1200;
         if (tempWidth > maxDim || tempHeight > maxDim) {
             const ratio = Math.min(maxDim / tempWidth, maxDim / tempHeight);
             tempWidth = Math.floor(tempWidth * ratio);
             tempHeight = Math.floor(tempHeight * ratio);
         }
         const startX = Math.floor((canvas.width - tempWidth) / 2);
-        const startY = Math.floor(canvas.height - tempHeight);
+        const startY = isMobile
+            ? Math.floor(canvas.height * 0.38 - tempHeight / 2)
+            : Math.floor(canvas.height - tempHeight);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, startX, startY, tempWidth, tempHeight);
@@ -331,10 +334,11 @@ function spawnOne() {
     el.className = 'term-popup';
     el.innerHTML = `<div class="term-bg"></div><span class="term-text">${term}</span>`;
 
+    const isMobile = window.innerWidth <= 768;
     const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const spreadX = window.innerWidth * 0.25;
-    const spreadY = window.innerHeight * 0.2;
+    const cy = isMobile ? window.innerHeight * 0.38 : window.innerHeight / 2;
+    const spreadX = isMobile ? window.innerWidth * 0.18 : window.innerWidth * 0.25;
+    const spreadY = isMobile ? window.innerHeight * 0.10 : window.innerHeight * 0.2;
     el.style.left = (cx - spreadX + Math.random() * spreadX * 2) + 'px';
     el.style.top = (cy - spreadY + Math.random() * spreadY * 2) + 'px';
 
@@ -356,3 +360,160 @@ function spawnTerm() {
 }
 
 setTimeout(spawnTerm, 2000);
+
+// ===== 入場動效 =====
+(function () {
+    const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?*';
+    const rg = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+
+    // Reveal chars left-to-right: white scramble → orange → natural color
+    // naturalColor: the element's computed color to land on after orange flash
+    function scrambleEl(textEl, src, charDelay, holdMs, naturalColor) {
+        if (!src.trim()) return Promise.resolve();
+
+        textEl.innerHTML = src.split('').map(c =>
+            c === ' ' ? ' ' : `<span data-f="${c}"></span>`
+        ).join('');
+
+        const spans = [...textEl.querySelectorAll('span[data-f]')];
+        if (!spans.length) return Promise.resolve();
+
+        return new Promise(res => {
+            let done = 0;
+            spans.forEach((sp, i) => {
+                setTimeout(() => {
+                    sp.textContent = rg();
+                    let elapsed = 0;
+                    const iv = setInterval(() => {
+                        elapsed += 50;
+                        if (elapsed >= holdMs) {
+                            sp.textContent = sp.dataset.f;
+                            // white → orange → natural color
+                            sp.style.color = '#f04714';
+                            setTimeout(() => {
+                                sp.style.transition = 'color 0.28s ease';
+                                sp.style.color = naturalColor;
+                            }, 80);
+                            clearInterval(iv);
+                            if (++done === spans.length) res();
+                        } else {
+                            sp.textContent = rg();
+                        }
+                    }, 50);
+                }, i * charDelay);
+            });
+        });
+    }
+
+    async function introReveal(boxEl, textEl, opts) {
+        const { INS = 250, OUTS = 260, charDelay = 32, holdMs = 120,
+                fitContent = false, pauseMs = 200 } = opts || {};
+
+        const cs = window.getComputedStyle(boxEl);
+        const wasStatic = cs.position === 'static';
+        if (wasStatic) boxEl.style.position = 'relative';
+        if (fitContent) boxEl.style.width = 'fit-content';
+        boxEl.style.overflow = 'hidden';
+
+        // Read natural color BEFORE clearing content
+        const naturalColor = window.getComputedStyle(textEl).color;
+
+        // Lock height to prevent layout jump
+        const savedHeight = textEl.offsetHeight;
+        if (savedHeight) textEl.style.minHeight = savedHeight + 'px';
+
+        const savedHTML = textEl.innerHTML;
+        const savedText = textEl.textContent;
+        const inner = document.createElement('span');
+        inner.style.cssText = 'position:relative;z-index:2;color:#fff;';
+        textEl.innerHTML = '';
+        textEl.appendChild(inner);
+
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:absolute;inset:0;background:#1a1a1a;' +
+            'transform:translateX(-101%);pointer-events:none;z-index:1;';
+        boxEl.appendChild(ov);
+
+        boxEl.style.opacity = '1';
+
+        // Phase 1+2 simultaneously: overlay slides in from LEFT + scramble
+        ov.style.transition = `transform ${INS}ms cubic-bezier(0.4,0,0.2,1)`;
+        const slideIn = new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() => {
+            ov.style.transform = 'translateX(0)';
+            setTimeout(r, INS);
+        })));
+        const scramble = scrambleEl(inner, savedText, charDelay, holdMs, naturalColor);
+
+        // Wait for overlay to fully cover, then hold briefly
+        await slideIn;
+        await new Promise(r => setTimeout(r, pauseMs));
+
+        // Phase 3: slide overlay out to RIGHT while scramble may still be finishing
+        // Chars have explicit colors set so removing inner's white is safe
+        inner.style.color = '';
+        ov.style.transition = `transform ${OUTS}ms cubic-bezier(0.4,0,0.2,1)`;
+        ov.style.transform = 'translateX(101%)';
+
+        // Wait for both slide-out and remaining scramble to complete
+        await Promise.all([scramble, new Promise(r => setTimeout(r, OUTS))]);
+
+        ov.remove();
+        textEl.innerHTML = savedHTML;
+        textEl.style.minHeight = '';
+        boxEl.style.overflow = '';
+        if (fitContent) boxEl.style.width = '';
+        if (wasStatic) boxEl.style.position = '';
+    }
+
+    const gap = ms => new Promise(r => setTimeout(r, ms));
+
+    async function runIntro() {
+        // Skip during page transitions (not a fresh load)
+        if (sessionStorage.getItem('page-transition')) return;
+
+        await gap(180);
+
+        const STAGGER = 280; // next element starts this many ms after previous begins
+
+        // Hide subtitles upfront so layout is stable during title animations
+        const subtitles = [...document.querySelectorAll('.work-list .work-item .subtitle')];
+        subtitles.forEach(s => {
+            s.style.opacity = '0';
+            s.style.transition = 'opacity 0.5s ease';
+        });
+
+        // 1. Choonie Chang
+        const h1 = document.querySelector('.hero-text h1');
+        if (h1) introReveal(h1, h1, { INS: 270, OUTS: 270, charDelay: 38, holdMs: 130 });
+        await gap(STAGGER);
+
+        // 2–4. Product Designer / Domain Diver / System Builder
+        for (const p of document.querySelectorAll('.hero-text p')) {
+            introReveal(p, p, { INS: 210, OUTS: 220, charDelay: 28, holdMs: 110, fitContent: true });
+            await gap(STAGGER);
+        }
+
+        // 5–8. Viscovery / Hangie / ICS / Accupass
+        // Collect promises so we know when all title animations finish
+        const workPromises = [];
+        for (const item of document.querySelectorAll('.work-list .work-item')) {
+            workPromises.push(introReveal(item, item.querySelector('.title') || item,
+                { INS: 220, OUTS: 240, charDelay: 32, holdMs: 115 }));
+            await gap(STAGGER);
+        }
+
+        // 9–10. LinkedIn / Say Hi
+        for (const item of document.querySelectorAll('.link-list .work-item')) {
+            introReveal(item, item.querySelector('.title') || item,
+                { INS: 200, OUTS: 220, charDelay: 28, holdMs: 105 });
+            await gap(STAGGER);
+        }
+
+        // Fade in all subtitles after every work-item title animation completes
+        Promise.all(workPromises).then(() => {
+            subtitles.forEach(s => { s.style.opacity = '1'; });
+        });
+    }
+
+    runIntro();
+})();

@@ -176,6 +176,20 @@ canvas {
     to { opacity: 0; }
 }
 
+/* ── Intro: initial hidden state ── */
+.hero-text h1,
+.hero-text p,
+.work-list .work-item,
+.link-list .work-item {
+    opacity: 0;
+}
+.skip-intro .hero-text h1,
+.skip-intro .hero-text p,
+.skip-intro .work-list .work-item,
+.skip-intro .link-list .work-item {
+    opacity: 1 !important;
+}
+
 /* ══ Mobile ══ */
 @media (max-width: 768px) {
     .frame { border-width: 12px; }
@@ -183,10 +197,10 @@ canvas {
     .hero-text {
         top: 40px;
         left: 24px;
-        right: 24px;
+        right: auto;
     }
     .hero-text h1 {
-        font-size: 11vw;
+        font-size: 12vw;
         letter-spacing: -2px;
     }
     .hero-text p {
@@ -197,14 +211,17 @@ canvas {
 
     .work-list {
         bottom: auto;
-        top: 50%;
+        top: 52%;
         left: 24px;
-        right: 24px;
+        right: auto;
+        max-width: 66vw;
     }
     .link-list {
-        bottom: 32px;
-        right: 24px;
-        left: auto;
+        bottom: 40px;
+        left: 24px;
+        right: auto;
+        text-align: left;
+        max-width: 66vw;
     }
 
     .work-list ul { gap: 4px; }
@@ -224,5 +241,29 @@ canvas {
         font-size: 16px;
     }
 
+    .work-item:active::before { transform: translateX(0); }
+    .work-item:active .title,
+    .work-item:active .subtitle { color: #fff; }
+
     .term-popup { font-size: 10px; }
+}
+
+/* ══ Mobile landscape ══ */
+@media (max-width: 812px) and (orientation: landscape) {
+    .hero-text {
+        top: 20px;
+    }
+    .hero-text h1 { font-size: 8vw; }
+    .hero-text p { font-size: 1.6vw; }
+
+    .work-list {
+        top: 10%;
+        left: 24px;
+        right: auto;
+        width: 50%;
+    }
+    .link-list {
+        bottom: 16px;
+        right: 24px;
+    }
 }

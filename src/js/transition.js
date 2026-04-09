@@ -32,6 +32,12 @@
 
         e.preventDefault();
         navigating = true;
+
+        // Lock overlay to current viewport dimensions before overflow:hidden
+        // removes the scrollbar and changes window.innerWidth
+        overlay.style.width  = window.innerWidth  + 'px';
+        overlay.style.height = window.innerHeight + 'px';
+
         doc.classList.add('transitioning');
         sessionStorage.setItem('page-transition', '1');
         overlay.classList.add('entering');

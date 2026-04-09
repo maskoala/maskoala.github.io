@@ -7,14 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/fav.png">
+    <link rel="preload" as="image" href="/images/fav.png">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/transition.css">
-    <script>if(sessionStorage.getItem('page-transition')){document.documentElement.classList.add('transition-arriving')}</script>
+    <script>if(sessionStorage.getItem('page-transition')){document.documentElement.classList.add('transition-arriving');document.documentElement.classList.add('skip-intro')}</script>
 </head>
 <body>
 
 <div class="page-transition">
     <div class="overlay">
+        <img class="overlay-icon" src="/images/fav.png" alt="">
         <span class="overlay-text">Choonie Chang</span>
     </div>
 </div>

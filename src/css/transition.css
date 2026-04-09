@@ -1,9 +1,18 @@
 /* ── Page Transition Overlay ── */
 
-/* Hide scrollbar during all transition states */
+/* Hide scrollbar during transitions to prevent layout shift */
 html.transitioning,
 html.transition-arriving {
     overflow: hidden;
+}
+
+/* On mobile, skip overflow:hidden during entering phase —
+   applying it triggers the browser address bar to reappear,
+   which shrinks the viewport and causes the icon to jump up */
+@media (max-width: 768px) {
+    html.transitioning {
+        overflow: visible;
+    }
 }
 
 .page-transition {
@@ -24,9 +33,18 @@ html.transition-arriving {
     height: 100%;
     background: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 16px;
     clip-path: inset(0 100% 0 0); /* hidden */
+}
+
+.page-transition .overlay-icon {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    opacity: 0;
 }
 
 .page-transition .overlay-text {
@@ -45,12 +63,16 @@ html.transition-arriving {
 .page-transition.entering .overlay-text {
     animation: textFadeIn 0.3s 0.3s ease forwards;
 }
+.page-transition.entering .overlay-icon {
+    animation: iconFadeIn 0.3s 0.3s ease forwards;
+}
 
 /* ── Arriving: cover page instantly before JS loads ── */
 .transition-arriving .page-transition .overlay {
     clip-path: inset(0 0 0 0);
 }
-.transition-arriving .page-transition .overlay-text {
+.transition-arriving .page-transition .overlay-text,
+.transition-arriving .page-transition .overlay-icon {
     opacity: 1;
 }
 
@@ -75,4 +97,8 @@ html.transition-arriving {
 @keyframes textFadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes iconFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
