@@ -16,15 +16,15 @@ canvas {
 }
 .hero-text {
     position: fixed;
-    top: 156px;
-    left: 156px;
+    top: clamp(40px, 12vh, 156px);
+    left: clamp(40px, 8vw, 156px);
     z-index: 10;
     pointer-events: none;
     font-family: 'Libre Caslon Text', serif;
 }
 .hero-text h1 {
     font-family: 'Old Standard TT', serif;
-    font-size: 7vw;
+    font-size: clamp(36px, 7vw, 120px);
     font-weight: 700;
     color: #1a1a1a;
     margin: 0;
@@ -43,15 +43,15 @@ canvas {
 }
 .work-list {
     position: fixed;
-    bottom: 156px;
-    left: 156px;
+    bottom: clamp(40px, 12vh, 156px);
+    left: clamp(40px, 8vw, 156px);
     z-index: 10;
     font-family: 'Old Standard TT', serif;
 }
 .link-list {
     position: fixed;
-    bottom: 156px;
-    right: 156px;
+    bottom: clamp(40px, 12vh, 156px);
+    right: clamp(40px, 8vw, 156px);
     z-index: 10;
     font-family: 'Old Standard TT', serif;
     text-align: right;
