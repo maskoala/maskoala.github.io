@@ -27,7 +27,8 @@
         if (!link) return;
 
         var href = link.getAttribute('href') || link.getAttribute('data-href');
-        if (!href || href === '#' || href.startsWith('http') || href.startsWith('mailto:')) return;
+        if (!href || href === '#' || href.startsWith('http')) return;
+        if (href.startsWith('mailto:')) { window.location.href = href; return; }
         if (href === window.location.pathname) return;
 
         e.preventDefault();
