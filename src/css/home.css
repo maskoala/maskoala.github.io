@@ -211,13 +211,14 @@ canvas {
 
     .work-list {
         bottom: auto;
-        top: 52%;
+        top: 50%;
         left: 24px;
         right: auto;
         max-width: 66vw;
     }
     .link-list {
-        bottom: 40px;
+        bottom: auto;
+        top: calc(50% + 210px);
         left: 24px;
         right: auto;
         text-align: left;
