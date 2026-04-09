@@ -18,6 +18,18 @@
         });
     }
 
+    // bfcache restore: browser back/forward restores page from memory with
+    // overlay still in 'entering' state and navigating=true — reset everything
+    window.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            overlay.classList.remove('entering', 'leaving');
+            overlay.style.width = '';
+            overlay.style.height = '';
+            doc.classList.remove('transitioning', 'transition-arriving');
+            navigating = false;
+        }
+    });
+
     // Phase 1: clip overlay in, show text, hold, then navigate
     var navigating = false;
     document.addEventListener('click', function(e) {
