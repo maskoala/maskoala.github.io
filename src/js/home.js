@@ -282,7 +282,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-init('/images/koala.jpg');
+init('/images/koala.webp');
 animate();
 
 window.addEventListener('resize', function() {
@@ -291,7 +291,7 @@ window.addEventListener('resize', function() {
     offCanvas.width = canvas.width;
     offCanvas.height = canvas.height;
     generateNoise();
-    init('/images/bw.png');
+    init('/images/bw.webp');
 });
 
 // ===== 隨機浮現 UIUX 術語 =====

@@ -3,7 +3,7 @@
     background: linear-gradient(148deg, #ff3838 19%, #992222 97%);
 }
 .hero-image-wrapper {
-    padding: 0;
+    padding: 0 40px;
 }
 .hero-image-container img {
     top: 0;
