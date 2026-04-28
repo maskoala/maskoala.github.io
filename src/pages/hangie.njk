@@ -51,9 +51,10 @@ nextImg: "/images/ics/hero.webp"
 <nav class="page-nav" id="page-nav">
     <div class="page-nav-header">ON THIS PAGE</div>
     <ul class="page-nav-list">
-        <li><a href="#" class="page-nav-item" data-target="overview">Overview</a></li>
         <li><a href="#" class="page-nav-item" data-target="context">Context</a></li>
         <li><a href="#" class="page-nav-item" data-target="modular-arch">Modular Architecture</a></li>
+        <li><a href="#" class="page-nav-item" data-target="system-at-scale">System at Scale</a></li>
+        <li><a href="#" class="page-nav-item" data-target="dual-sided">Dual-Sided Product</a></li>
         <li><a href="#" class="page-nav-item" data-target="system-failure">System Failure</a></li>
         <li><a href="#" class="page-nav-item" data-target="impact">Impact &amp; Learnings</a></li>
         <li><a href="#" class="page-nav-item" data-target="reflection">Reflection</a></li>
@@ -64,22 +65,42 @@ nextImg: "/images/ics/hero.webp"
 <div class="section" id="context" style="margin-top: 64px;">
     <div class="text-block">
         <h2>Context</h2>
-        <p class="body-text">Hangie is an energy rental platform on the TRON blockchain — using intelligent matching to help users reduce transfer fees by 80% while generating stable on-chain returns for capital holders. The core product challenge: transforming abstract blockchain concepts like "Energy" and "Staking" into a financial product experience that general users can understand.</p>
+        <p class="body-text">Hangie is an energy rental and financial aggregation platform on the TRON blockchain — helping users reduce on-chain transfer fees by up to 80% while generating yield for capital holders. The core product challenge: turning abstract concepts like "energy" and "staking" into a financial product experience users from outside crypto can understand.</p>
     </div>
     <div class="text-block">
-        <p class="body-text">This domain was entirely new to me. To build sufficient domain knowledge for sound product decisions, I approached it from two directions simultaneously:</p>
+        <p class="body-text">This domain was entirely new to me. Rather than front-load months of reading, I ran a compressed research loop with AI as accelerator at every stage — each step feeding the next.</p>
     </div>
-    <div class="text-block">
-        <h4 class="phase-label">Self-Directed Research</h4>
-        <p class="body-text">Read TRON whitepapers and technical documentation, executed on-chain transactions hands-on (staking, energy conversion) to build first-hand understanding of the underlying mechanics.</p>
+    <div class="image-block">
+        <img src="/images/hangie/ai-workflow.webp" alt="Research workflow — Perplexity → Claude → TRON Network → Gemini + Claude" class="rounded-image">
     </div>
+
     <div class="text-block">
-        <h4 class="phase-label">Intensive Collaboration with Tech Lead</h4>
-        <p class="body-text">Through weekly technical deep-dive sessions, progressively clarified the matching engine's priority logic, interest accrual rules, and technical constraints of on-chain interactions.</p>
+        <h4 class="phase-label">1. Perplexity — Initial Market Scan</h4>
+        <p class="body-text">First pass mapping the landscape: who's competing, what the product shape looks like, where pricing conventions cluster.</p>
     </div>
+
     <div class="text-block">
-        <h4 class="phase-label">My Role</h4>
-        <p class="body-text">As Product Owner and Design Lead, I was responsible for business logic definition, product spec writing, UX design, and development process management. Team composition: 1 PM (myself), 1 Tech Lead, 2 Backend & 1 Frontend Developers, 1 Designer. Beyond product design, I also introduced Sprint methodology, transforming the team from an "ad-hoc verbal assignment" mode to iteration-driven development powered by User Stories.</p>
+        <h4 class="phase-label">2. Claude — APR Structures and Rent-Rate Formulas</h4>
+        <p class="body-text">With the market shape clear, I used Claude to break down competitor APR structures and reverse-engineer their rent-rate formulas. This work became the foundation for Hangie's APR reverse-inference formula, which I cover in the Dual-Sided Product section.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">3. Hands-On Operation — UX Friction Learning</h4>
+        <p class="body-text">Documentation describes mechanics; using the thing teaches you what users actually feel. I executed real on-chain transactions on my own TRX wallet — staking, delegating, reclaiming — so the friction wasn't abstract by the time I started designing.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">4. Gemini + Claude — Spec Planning with Cross-Validation</h4>
+        <p class="body-text">Drafting product specs against two models in parallel surfaced contradictions and stress-tested edge cases before they became production bugs.</p>
+    </div>
+
+    <div class="text-block">
+        <p class="body-text">By the time I designed Hangie's flows, I wasn't designing for someone hypothetical — I was designing the platform I'd wanted to use when I first got here.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Team & Role</h4>
+        <p class="body-text">As Product Owner and Design Lead, I owned business logic definition, product spec writing, UX design, and development process management. Team composition: 1 PM (myself), 1 Tech Lead, 2 Backend + 1 Frontend Developers, 1 Designer. I ran weekly technical deep-dives with my Tech Lead to clarify matching logic, interest accrual, and on-chain constraints — trust that proved load-bearing later when the matching engine broke. I also introduced Sprint methodology, transitioning the team from ad-hoc verbal assignments to User Story-driven iteration with a structured backlog — process infrastructure that let us absorb the failure without losing the rest of the roadmap.</p>
     </div>
 </div>
 
@@ -93,22 +114,128 @@ nextImg: "/images/ics/hero.webp"
         <h4 class="phase-label">Finance Layer</h4>
         <p class="body-text">Handles universal interest calculation rules, product listing/delisting, and purchase flows. Keeps logic independent so adding new financial products in the future requires no changes to the underlying layer.</p>
     </div>
-    <div class="image-block">
-        <img src="/images/hangie/architecture.webp" alt="Dual-layer architecture: Finance Layer and Staking Layer" class="rounded-image">
-    </div>
     <div class="text-block">
         <h4 class="phase-label">Staking Layer</h4>
         <p class="body-text">Handles on-chain interactions, energy conversion, and matching execution. Focuses on synchronization stability with blockchain nodes.</p>
     </div>
+    <div class="image-block">
+        <img src="/images/hangie/architecture.webp" alt="Dual-layer architecture: Finance Layer and Staking Layer" class="rounded-image">
+    </div>
     <div class="text-block">
         <p class="body-text">This architectural decision proved its value during the subsequent debugging process — when the matching logic broke, we could precisely locate the issue in the Staking Layer rather than the Finance Layer, significantly narrowing the investigation scope.</p>
     </div>
+</div>
+
+<!-- ═══ System Design at Scale ═══ -->
+<div class="section" id="system-at-scale">
+    <div class="text-block">
+        <h2>System Design at Scale</h2>
+        <p class="body-text"><em>Most of Hangie's value lived in flows users never saw — and in one decision about what belonged on-chain.</em></p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">A common assumption about blockchain products is that everything happens on-chain. Hangie was deliberately not that. The vast majority of the system — deposits, interest calculation, redemptions — ran as platform-internal logic. On-chain interaction was reserved for operations that genuinely required it, because on-chain is slow, expensive, and irreversible.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Redemption as Retention Design</h4>
+        <p class="body-text">The most consequential internal flow wasn't technical — it was a retention decision. Financial products came in two tiers:</p>
+    </div>
+    <div class="text-block">
+        <div class="body-text">
+            <ul>
+                <li><strong>Fixed-Term</strong> — higher APR, committed period, 50–60% interest penalty on early redemption</li>
+                <li><strong>Flexible</strong> — lower APR, anytime redemption with a 14-day unbonding window, no penalty</li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-block">
+        <p class="body-text">At maturity, fixed-term deposits don't auto-return to the user's wallet. Instead, they <strong>auto-convert into flexible products</strong> at the lower rate — capital keeps earning, user retains full control. Most financial products choose between auto-rollover (removes agency) or return-to-wallet (loses the capital that just got earned). The auto-convert design splits the difference: retention without lock-in.</p>
+    </div>
     <div class="image-block">
-        <img src="/images/hangie/hangie-app.webp" alt="Hangie app screens — Rent Energy and Staking" style="width:100%;">
+        <img src="/images/hangie/redemption-flow.webp" alt="Redemption flow as retention design: fixed-term staking matures into auto-conversion to flexible products; users can opt back to fixed-term, redeem via 14-day unbonding window, or accept interest penalty for early redemption. The discarded auto-redemption design is shown crossed out." class="rounded-image">
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Energy Rental Matching — On-Chain at the Edge</h4>
+        <p class="body-text">The one flow that did touch the chain: an energy rental order gets matched at the platform layer, and only the final delegation hits on-chain. This is the flow that broke at Soft Launch — more on that next.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Compliance by Architecture</h4>
+        <p class="body-text">Designed a compliance-by-architecture deposit flow: isolated per-user recharge addresses validated through OKX's wallet API before aggregation — tainted funds structurally cannot reach operational capital.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/aml-deposit-flow.svg" alt="AML compliance-by-architecture: isolated per-user recharge addresses validated through wallet API before aggregation into operational capital" class="rounded-image">
     </div>
 </div>
 
-<!-- ═══ From System Failure to Logic Restructuring ═══ -->
+<!-- ═══ Dual-Sided Product ═══ -->
+<div class="section" id="dual-sided">
+    <div class="text-block">
+        <h2>Designing the Dual-Sided Product</h2>
+        <p class="body-text"><em>A financial product has to work for both the person putting money in — and the person launching the product.</em></p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">Hangie served two distinct audiences, and I designed for both.</p>
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">End-User Experience: Crypto-Familiar, Not Crypto-Complex</h4>
+        <p class="body-text">Rather than forcing users to understand on-chain staking, the product was framed in familiar financial terms — fixed-term deposits, flexible savings, term-based yields. Users saw APR, lockup periods, and redemption windows, not gas fees and wallet signing prompts. Two core consumer flows: Financial Products (the two-tier structure covered above) and Energy Rental (instant exchange, pre-paid packages, and a wallet-monitoring auto-refill mode).</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">The design principle: abstract the on-chain complexity, preserve the mental model crypto users already have. Users who understood staking intuitively grasped how the platform worked — without needing to think about the chain at all.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/hangie-app.webp" alt="Hangie end-user screens — Financial Products and Energy Rental" style="width:100%;">
+    </div>
+
+    <div class="text-block">
+        <h4 class="phase-label">Operator Tool: From Expert Mode to Guided Mode</h4>
+        <p class="body-text">The marketing team needed to launch new financial products on their own — without routing each launch through design or engineering.</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">I designed two versions of the same backend, then made a deliberate choice about which one shipped:</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text"><strong>V1 — Expert Mode</strong> required operators to fill in every parameter themselves:</p>
+        <div class="body-text">
+            <ul>
+                <li>Rental pricing</li>
+                <li>Rental capacity ratio (%)</li>
+                <li>On-chain APR (%)</li>
+                <li>Yield concession ratio (%)</li>
+            </ul>
+        </div>
+        <p class="body-text">This version worked, but it assumed operators understood how these levers interact — which they didn't. Non-technical marketers shouldn't need to reason about capacity economics to publish a product.</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text"><strong>V2 — Guided Mode</strong> asked only two inputs:</p>
+        <div class="body-text">
+            <ul>
+                <li>Target APR</li>
+                <li>Staking days</li>
+            </ul>
+        </div>
+        <p class="body-text">Everything else — capacity ratio, concession ratio, rental pricing — was reverse-inferred by the system from the APR formula:</p>
+    </div>
+    <div class="text-block">
+        <div style="background: #f8f8f8; padding: 20px 24px; border-left: 4px solid #666; font-family: monospace; font-size: 0.9em; line-height: 1.5;">
+            Product APR = ((energy price per 10K TRX × rental pricing × 365 × capacity ratio ÷ 10K TRX) + on-chain APR) × yield concession ratio
+        </div>
+    </div>
+    <div class="text-block">
+        <p class="body-text">This meant every product launched was automatically anchored to live market economics, and the marketing team could operate without a calculator open in another tab.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/operator-v1-v2-comparison.webp" alt="Operator backend comparison: V1 Expert Mode required operators to fill four parameters (Rental Price, Rental Capacity Ratio, On-chain APR, Yield Concession Ratio); V2 Guided Mode collapses these into a single APR input with four auto-derived reference chips (Current Energy Price, Full Rental Rate, On-chain APR, Yield Concession), reverse-inferring the rest from live market data" class="rounded-image">
+    </div>
+    <div class="text-block">
+        <p class="body-text"><strong>Why it matters:</strong> This wasn't simplification for simplification's sake. It was recognizing that the right level of exposed complexity depends on who's using the tool — and designing progressive disclosure so experts could still override when needed.</p>
+    </div>
+</div>
+
+<!-- ═══ System Failure ═══ -->
 <div class="section" id="system-failure">
     <div class="text-block">
         <h2>From System Failure to Logic Restructuring</h2>
@@ -116,19 +243,22 @@ nextImg: "/images/ics/hero.webp"
     </div>
     <div class="text-block">
         <h4 class="phase-label">Step 1 — Root Cause Analysis</h4>
-        <p class="body-text">Through deep investigation with the engineering team, I uncovered two hidden logic conflicts:</p>
+        <p class="body-text">The supply order itself was correctly designed: User deposits first, Company funds second, External 3rd-party last — ensuring user capital actually got utilized rather than sitting idle while we subsidized from our own pool.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/matching-1-happy-path.webp" alt="Designed matching flow: a 12,000-unit order draws from User Deposit Pool first (consuming all 6,200), then Company Funds (consuming all 4,000), then External 3rd-party — each pool drained to its actual remainder before falling through" class="rounded-image">
     </div>
     <div class="text-block">
-        <h4 class="phase-label">Priority Conflict</h4>
-        <p class="body-text">The system defaulted to consuming "company-owned funds" and "third-party external energy" first, with "user deposit orders" last in line. This meant that when supply was sufficient from other sources, retail users' deposits might never get matched.</p>
+        <h4 class="phase-label">The Sub-Minimum Stranding Bug</h4>
+        <p class="body-text">The hidden flaw was in <strong>how the engine consumed each pool</strong>. The matching engine pulled from each pool in chunks sized to the minimum order amount (6,000 units) rather than draining the pool to its actual remainder. Whenever the User Pool held a non-multiple of 6,000 — say 6,200 — the engine pulled 6,000 and left 200 behind. That 200 fell below the minimum threshold, so the next order skipped the User Pool entirely and fell through to Company Funds. Over time, leftover crumbs accumulated as permanently stranded user capital.</p>
     </div>
-    <div class="text-block">
-        <h4 class="phase-label">Threshold Issue</h4>
-        <p class="body-text">When a single order's energy requirement (e.g., 6,000) exceeded a user's individual deposit capacity (e.g., 100), the system would skip that user entirely — making it impossible for small-amount retail users to ever match successfully.</p>
+    <div class="image-block">
+        <img src="/images/hangie/matching-2-actual.webp" alt="Actual matching behavior: a 12,000 order pulls 6,000 from a 6,200 User Pool, leaves 200 stranded below the minimum threshold, and falls through to Company Funds — repeating the pattern across orders accumulates stranded user capital" class="rounded-image">
     </div>
+
     <div class="text-block">
         <h4 class="phase-label">Step 2 — Visual Alignment with FigJam</h4>
-        <p class="body-text">Facing a cognitive gap within the development team regarding "internal vs. external order priority," verbal communication kept going back and forth without convergence. I changed tactics — during an online meeting, I opened FigJam and drew the matching engine's logic decision tree in real-time, marking each node: "Is energy sufficient?", "Priority ranking," "Threshold check," and so on.</p>
+        <p class="body-text">Facing a cognitive gap within the development team about how each pool should be consumed during matching — drain to remainder or pull in fixed minimum chunks — verbal communication kept going back and forth without convergence. I changed tactics — during an online meeting, I opened FigJam and drew the matching engine's logic decision tree in real-time, marking each node: "Is energy sufficient?", "Pool selection," "Drain or chunk?", and so on.</p>
     </div>
     <div class="text-block">
         <div class="body-text">
@@ -140,9 +270,16 @@ nextImg: "/images/ics/hero.webp"
     <div class="image-block">
         <img src="/images/hangie/figjam-flowchart.webp" alt="FigJam logic decision tree for matching engine" style="width:100%;">
     </div>
+
     <div class="text-block">
         <h4 class="phase-label">Step 3 — Operational Fix: Liquidity Buffer</h4>
-        <p class="body-text">During the transition period while the code logic was being fixed, to prevent users from remaining unmatched, I proposed a "Liquidity Buffer" mechanism: the company would cover the shortfall for individual orders, ensuring small-amount users could successfully match and generate returns from the start. This mechanism simultaneously solved the cold-start problem — maintaining normal system operation before user volume reached critical mass.</p>
+        <p class="body-text">Rather than wait for the engine fix to ship, I proposed a <strong>Liquidity Buffer</strong> — a continuously-maintained reserve sized to one minimum order. When the User Pool fell short of the minimum chunk, the Buffer topped up the difference, letting the otherwise-stranded 200 finally participate in a 6,000 match. The user's full balance got utilized; Company Funds didn't have to subsidize the gap.</p>
+    </div>
+    <div class="text-block">
+        <p class="body-text">The Buffer also solved the <strong>cold-start problem</strong> — when total user volume hadn't yet reached the minimum order size, the Buffer carried the system through. One mechanism, two structural wins.</p>
+    </div>
+    <div class="image-block">
+        <img src="/images/hangie/matching-3-liquidity-buffer-fix.webp" alt="Liquidity Buffer fix: User Pool's 6,200 contributes 6,000 in the first chunk; the remaining 200 leftover combines with Buffer's 5,800 top-up to form a second 6,000 chunk — full user balance utilized, order completes without touching Company Funds" class="rounded-image">
     </div>
 </div>
 
@@ -169,6 +306,96 @@ nextImg: "/images/ics/hero.webp"
 <div class="section" id="reflection">
     <div class="text-block">
         <h2>Reflection: What I'd Do Differently</h2>
-        <p class="body-text">Build edge-case decision trees before launch. The matching failure was fundamentally an edge case — small retail users unable to match under specific conditions. If I had drawn a complete decision tree for the matching logic during the design phase (rather than only designing the Happy Path), we could have caught this issue before Soft Launch. This experience deeply reinforced that as a Product Owner, design isn't just about the ideal state — it requires understanding backend constraints and proactively planning solutions for edge cases when system resources are insufficient.</p>
+        <p class="body-text">Build edge-case decision trees before launch. The matching failure was a leftover-balance edge case — sub-minimum amounts the engine couldn't reuse on subsequent orders, slowly stranding user capital. If I had drawn a complete decision tree for the matching logic during the design phase — including what happens to balances below the minimum threshold after each pool draw — we could have caught this stranding bug before Soft Launch. This experience deeply reinforced that as a Product Owner, design isn't just about the ideal state — it requires understanding backend constraints and proactively planning for edge cases where system resources interact with their own consumption patterns.</p>
     </div>
 </div>
+
+<!-- Gallery section preserved (commented out). Restore by uncommenting the Nunjucks block below + adding back the page-nav entry. -->
+{#
+<!-- ═══ Gallery ═══ -->
+<div class="section gallery-section" id="gallery">
+    <div class="text-block">
+        <h2>Gallery</h2>
+        <p class="body-text">Selected screens and interactions from across the platform — financial products, energy rental, deposits, and the operator backend.</p>
+    </div>
+
+    <!-- Group 1: Financial Products -->
+    <div class="gallery-group">
+        <div class="gallery-group-header">
+            <h3>Financial Products</h3>
+            <p>Purchase, redemption, and asset management — designed in familiar financial terms rather than on-chain mechanics.</p>
+        </div>
+        <div class="gallery-grid featured">
+            <div class="gallery-motion">
+                <div class="gallery-placeholder wide">
+                    <p>[ Motion: Purchase flow end-to-end<br>— product list → terms → confirm → success ]</p>
+                </div>
+            </div>
+            <div class="gallery-placeholder">
+                <p>[ Screen: Redemption detail ]</p>
+            </div>
+            <div class="gallery-placeholder">
+                <p>[ Screen: Earning dashboard ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group 2: Energy Rental -->
+    <div class="gallery-group">
+        <div class="gallery-group-header">
+            <h3>Energy Rental</h3>
+            <p>Three modes for different user profiles — instant exchange, pre-paid VIP packages, and a wallet-monitoring auto-refill mode.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-motion">
+                <div class="gallery-placeholder">
+                    <p>[ Motion: Flash exchange flow ]</p>
+                </div>
+            </div>
+            <div class="gallery-placeholder">
+                <p>[ Screen: VIP Energy Package ]</p>
+            </div>
+            <div class="gallery-placeholder">
+                <p>[ Screen: Count-based monitoring mode ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group 3: Dashboard & Deposits -->
+    <div class="gallery-group">
+        <div class="gallery-group-header">
+            <h3>Dashboard & Deposits</h3>
+            <p>Asset overview and fiat on-ramp — the entry point for non-crypto-native users.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-placeholder">
+                <p>[ Screen: Asset dashboard ]</p>
+            </div>
+            <div class="gallery-motion">
+                <div class="gallery-placeholder">
+                    <p>[ Motion: Fiat deposit flow<br>— 5-step hand-off to third-party ]</p>
+                </div>
+            </div>
+            <div class="gallery-placeholder">
+                <p>[ Screen: Deposit record + AML status ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group 4: Operator Backend -->
+    <div class="gallery-group">
+        <div class="gallery-group-header">
+            <h3>Operator Backend</h3>
+            <p>Internal tool for the marketing team — Expert Mode preserved for advanced overrides, Guided Mode shipped as default.</p>
+        </div>
+        <div class="gallery-grid two-col">
+            <div class="gallery-placeholder wide">
+                <p>[ Screen: V1 Expert Mode — all parameters ]</p>
+            </div>
+            <div class="gallery-placeholder wide">
+                <p>[ Screen: V2 Guided Mode — APR + days only ]</p>
+            </div>
+        </div>
+    </div>
+</div>
+#}
