@@ -176,18 +176,37 @@ canvas {
     to { opacity: 0; }
 }
 
-/* ── Intro: initial hidden state ── */
+/* ── Intro: stagger fade-in (CSS-only, replaces JS scramble) ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 .hero-text h1,
 .hero-text p,
 .work-list .work-item,
 .link-list .work-item {
     opacity: 0;
+    animation: fadeIn 0.45s ease forwards;
 }
+
+.hero-text h1                        { animation-delay: 0.10s; }
+.hero-text p:nth-of-type(1)          { animation-delay: 0.18s; }
+.hero-text p:nth-of-type(2)          { animation-delay: 0.26s; }
+.hero-text p:nth-of-type(3)          { animation-delay: 0.34s; }
+.work-list .work-item:nth-of-type(1) { animation-delay: 0.42s; }
+.work-list .work-item:nth-of-type(2) { animation-delay: 0.50s; }
+.work-list .work-item:nth-of-type(3) { animation-delay: 0.58s; }
+.work-list .work-item:nth-of-type(4) { animation-delay: 0.66s; }
+.link-list .work-item:nth-of-type(1) { animation-delay: 0.74s; }
+.link-list .work-item:nth-of-type(2) { animation-delay: 0.82s; }
+
 .skip-intro .hero-text h1,
 .skip-intro .hero-text p,
 .skip-intro .work-list .work-item,
 .skip-intro .link-list .work-item {
     opacity: 1 !important;
+    animation: none !important;
 }
 
 /* ══ Mobile ══ */
